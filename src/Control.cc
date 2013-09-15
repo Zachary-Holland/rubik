@@ -58,7 +58,7 @@ int cControl::Process (cCube& cube,
     while (true)
     {
         int ch = ::wgetch (_wnd);
-        if (ch == 'q' || ch == 'Q')
+        if (ch == 'c' || ch == 'C')
             return -1;
 
         if (ch == KEY_MOUSE)
@@ -89,53 +89,75 @@ int cControl::Process (cCube& cube,
             else
                 cube.Shuffle (count);
             return 0;
-        case 'f':
-        case 'F':
-            cube.TurnFront (0, islower(ch));
+        case 'h':
+            cube.TurnFront (0, 1);
             return 0;
-        case 'b':
-        case 'B':
-            cube.TurnFront (-1, !islower(ch));
+        case 'g':
+            cube.TurnFront (0, 0);
+            return 0;
+        case 'w':
+            cube.TurnFront (-1, !1);
+            return 0;
+        case 'o':
+            cube.TurnFront (-1, !0);
             return 0;
         //case 's':
         //case 'S':
         //    sscanf (move.c_str() + 1, "%d", &splice);
         //    cube.TurnSide (splice, islower(ch));
         //    break;
-        case 't':
-        case 'T':
-            cube.TurnTop (0, islower(ch));
+        case 'j':
+            cube.TurnTop (0, 1);
             return 0;
-        case 'l':
-        case 'L':
-            cube.TurnSide (0, islower(ch));
-            return 0;
-        case 'r':
-        case 'R':
-            cube.TurnSide (-1, !islower(ch));
+        case 'f':
+            cube.TurnTop (0, 0);
             return 0;
         case 'd':
-        case 'D':
-            cube.TurnTop (-1, !islower(ch));
+            cube.TurnSide (0, 1);
             return 0;
-        case 'x':
-        case 'X':
-            cube.Pitch (islower(ch));
+        case 'e':
+            cube.TurnSide (0, 0);
             return 0;
+        case 'i':
+            cube.TurnSide (-1, !1);
+            return 0;
+        case 'k':
+            cube.TurnSide (-1, !0);
+            return 0;
+        case 's':
+            cube.TurnTop (-1, !1);
+            return 0;
+        case 'l':
+            cube.TurnTop (-1, !0);
+            return 0;
+        case 'b':
+        case 'n':
+            cube.Pitch (1);
+            return 0;
+        case 't':
         case 'y':
-        case 'Y':
-            cube.Yaw (islower(ch));
+            cube.Pitch (0);
             return 0;
-        case 'z':
-        case 'Z':
-            cube.Roll (islower(ch));
+        case ';':
+            cube.Yaw (1);
             return 0;
+        case 'a':
+            cube.Yaw (0);
+            return 0;
+        case 'q':
+            cube.Roll (1);
+            return 0;
+        case 'p':
+            cube.Roll (0);
+            return 0;
+        /*
         case 'u':
             if (!count)
                 cube.Undo (1);
             else
                 cube.Undo (count);
             return 0;
+        */
         default:
             return 0;
         }
